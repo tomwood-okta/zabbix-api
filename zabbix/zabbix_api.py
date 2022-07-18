@@ -199,10 +199,7 @@ class ZabbixAPI(object):
         else:
             raise ZabbixAPIException("No authentication information available.")
 
-        # don't print the raw password.
-        hashed_pw_string = "md5(" + hashlib.md5(l_password.encode('utf-8')).hexdigest() + ")"
-        self.debug(logging.DEBUG, "Trying to login with %s:%s" %
-                (repr(l_user), repr(hashed_pw_string)))
+        self.debug(logging.DEBUG, "Trying to login with %s:%s" % repr(l_user))
         obj = self.json_obj('user.login', {'user': l_user, 'password': l_password}, auth=False)
         result = self.do_request(obj)
         self.auth = result['result']
