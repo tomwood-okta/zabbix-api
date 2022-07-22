@@ -199,7 +199,7 @@ class ZabbixAPI(object):
         else:
             raise ZabbixAPIException("No authentication information available.")
 
-        self.debug(logging.DEBUG, "Trying to login with %s:%s" % repr(l_user))
+        self.debug(logging.DEBUG, "Trying to login with %s" % repr(l_user))
         obj = self.json_obj('user.login', {'user': l_user, 'password': l_password}, auth=False)
         result = self.do_request(obj)
         self.auth = result['result']
